@@ -59,7 +59,7 @@ function G() {
             RED=0, BLUE=0, GREEN=0, //color channels
             Y, H, //for the egg
             D=0,  //ray marched distance; TODO: optimize this var out, replace with x or o
-            N=50,
+            N=80,
             len,
             noise; 
 
@@ -92,7 +92,7 @@ function G() {
                 
 
                 //fake some sparkle on the very tips
-                if (pz<50 && py+D*40>74) {
+                if (pz<50 && py+D*40>72) {
                     RED = S(RED*2);
                     GREEN = S(GREEN*1.75)*.95;
                     BLUE = S(BLUE*1);
@@ -101,7 +101,7 @@ function G() {
                 if ((H=R(px*px+Y*Y+pz*pz)-32) < D) {
                     D = H;
                     
-                    RED = GREEN = BLUE = 1-(k/N*1.2*(1-Y/4)) * 1-$(px,py,.9)*.3 - Q(i*noise/500)*.03;
+                    RED = GREEN = BLUE = 1-(k/N*1.2*(1-Y/4)) * 1-$(px,py,.9)*.3 - Q(i*noise/700)*.03;
                     GREEN *= .8;
                     RED *= .9;
                     BLUE *= .7;
@@ -112,7 +112,7 @@ function G() {
                 // RED=A(Math.min(255,RED));                
             }
 
-            if (D < .2) 
+            if (D < .1) 
                 break;
 
             //continue marching
