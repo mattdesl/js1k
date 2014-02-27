@@ -13,6 +13,11 @@ window.onmousemove = function(e) {
     // console.log(mouseX);
 }
 
+var p = [];
+
+for ()
+
+
 function R() {
     var i = s*s,
         x, y;
@@ -26,22 +31,6 @@ function R() {
     
 
 
-    // c.beginPath();
-    // c.arc(50, 50, 25, Math.PI*2, 0);
-    // // console.log(mouseX)
-    // c.stroke();
-    // c.strokeStyle = c.isPointInPath(mouseX, mouseY) ? "red" : "blue";
-    
-    x = s/2;
-    y = s/4;
-
-    c.moveTo(x, y);
-    var l = 5;
-    c.quadraticCurveTo(x+50/4, y+Math.sin(t)*5, x+50, y);
-    // c.bezierCurveTo(x+Math.sin(t), y+Math.sin(t),
-    //                 x+Math.sin(t)*10, y+Math.sin(t)*10,
-    //                 x+10, y+10);
-    c.stroke();
     requestAnimationFrame(R);
 };
 
