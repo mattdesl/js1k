@@ -5,13 +5,13 @@ var gulp = require('gulp');
 var js1k = require("gulp-js1k");
 
 
-var closureCompiler = require('gulp-closure-compiler');
+// var closureCompiler = require('gulp-closure-compiler');
 
-gulp.task('js1k-closure', function () {
-    gulp.src('src/*.js')
-        .pipe(closureCompiler())
-        .pipe(gulp.dest('dist'));
-});
+// gulp.task('js1k-closure', function () {
+//     gulp.src('src/*.js')
+//         .pipe(closureCompiler())
+//         .pipe(gulp.dest('dist'));
+// });
 
 // Print some stats (js1k elgibility), minify and output to "/submission/"
 gulp.task("js1k", function() {

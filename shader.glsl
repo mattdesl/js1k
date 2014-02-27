@@ -1,53 +1,22 @@
-#ifdef GL_ES
-precision mediump float;
-#endif
+precision lowp float;
 
-uniform float time;
-uniform vec2 mouse;
-uniform vec2 resolution;
+uniform vec2 M;
 
-float sdTorus( vec3 p, vec2 t )
+float hash( vec2 n ) //Borrowed from voltage
 {
-  vec2 q = vec2(length(p.xz)-t.x,p.y);
-  return length(q)-t.y;
+    return fract(sin(n.x*n.y)*1e6);
 }
 
-float sdFloor(vec3 p, vec3 b) {
-  return length(max(abs(p)-b,0.0));
-}
 
-float sdCylinder( vec3 p, vec3 c )
-{
-  return length(p.xz-c.xy)-c.z;
-}
+void main( void ) {
+	float R = .45;
+	vec2 P = gl_FragCoord.xy/512. - .5;
+	vec3 N = normalize( vec3(P.xy, sqrt(R*R - P.x*P.x - P.y*P.y)) );
+	vec3 L = normalize( vec3(M.xy/512.-.5, .5) );
+	float D = max(0., dot(N,L));
 
-void main()
-{
+	vec3 C = mix(vec3(.8,.6,.5), vec3(0.2), .3*vec3(hash(gl_FragCoord.xy*.01))) * D;
 
-
-	vec2 coords = gl_FragCoord.xy / resolution;
-	
-	vec3 ray_dir = normalize( vec3( coords.x-sin(time*0.5)*0.1, coords.y - 0.5, -1.0 +sin(time*0.5)*0.1) );
-	vec3 ray_orig = vec3(-20.0+sin(time*0.5)*20.0,5.0,100.0);
-	float offs = 0.0;
-	float j;
-	for( float i = 0.0; i < 50.0;i += 1.0 ) {
-		vec3 pos = vec3(ray_orig+ray_dir*offs);
-			
-		vec3 c = vec3(100.0,100.0,100.0);
-		vec3 q = mod(pos,c)-0.5*c;
-		
-		float dist = sdCylinder(q, vec3(0.0,0.0,5.0));
-		
-		dist = min(dist, sdFloor(q, vec3(50.0,1.0,50.0)));
-		
-		offs+=dist;
-	        j = i;
-		if(abs(dist)<0.0001) break;
-		
-	}
-	
-	float c=j/50.0;
-	gl_FragColor=vec4(vec3(c), 1.0);
-	
+	// vec3 C = mix(vec3(D), vec3(0.8, 0.6, 0.5), hash(gl_FragCoord.xy));
+	gl_FragColor = vec4(C,1.0);
 }
