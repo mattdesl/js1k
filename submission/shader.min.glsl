@@ -1,0 +1,1 @@
+precision lowp float;uniform vec2 M;float a(vec2 b){return fract(sin(b.x*b.y)*1e6);}void main(void){float c=.45;vec2 d=gl_FragCoord.xy/512.-.5;vec3 e=normalize(vec3(d.xy,sqrt(c*c-d.x*d.x-d.y*d.y)));vec3 f=normalize(vec3(M.xy/512.-.5,.5));float g=max(0.,dot(e,f));vec3 h=mix(vec3(.8,.6,.5),vec3(0.2),.3*vec3(a(gl_FragCoord.xy*.01)))*g;gl_FragColor=vec4(h,1.0);}

@@ -7,6 +7,9 @@ float hash( vec2 n ) //Borrowed from voltage
     return fract(sin(n.x*n.y)*1e6);
 }
 
+    
+
+
 
 void main( void ) {
 	float R = .45;
@@ -19,4 +22,4 @@ void main( void ) {
 
 	// vec3 C = mix(vec3(D), vec3(0.8, 0.6, 0.5), hash(gl_FragCoord.xy));
 	gl_FragColor = vec4(C,1.0);
-}
+}        
