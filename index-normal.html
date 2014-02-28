@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>JS1k, [COMPO] demo submission [ID]</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="http://js1k.com/favicon.png">
+    <link rel="icon" type="image/png" href="http://js1k.com/favicon.png">
+		<meta charset="utf-8" />
+    <style>
+      html, body { margin: 0; padding: 0; border: 0; }
+      #c { display: block; } /* kill scrollbars from hell */
+    </style>
+	</head>
+	<body>
+  <frame marginwidth="0" marginheight="0" frameborder="0" noresize="no" src="javascript:'&lt;!doctype html&gt;\n&lt;html&gt;\n\t&lt;head&gt;\n\t\t&lt;meta charset=&quot;utf-8&quot; /&gt;\n\t\t&lt;style&gt;\n\t\t\thtml, body { margin: 0; padding: 0; border: 0; text-align: center; overflow: hidden; }\n\n\t\t\ta { color: black; text-decoration: none; border-bottom: 1px dashed black; }\n\t\t\ta:hover { border-bottom: 1px solid red; }\n\n\t\t\t.previous { float: left; margin-left: 10px; }\n\t\t\t.next { float: right; margin-right: 10px; }\n\n      div { position: absolute; top: 22px; width: 90%25; left: 5%25; text-align: center; overflow: hidden; text-overflow: ellipsis; font-style: italic; }\n\t\t&lt;/style&gt;\n\t&lt;/head&gt;\n\t&lt;body&gt;\n    \n    &lt;a href=&quot;/&quot; target=&quot;_top&quot;&gt;JS1k&lt;/a&gt; &lt;a href=&quot;/2014-dragons/&quot; target=&quot;_top&quot;&gt;2014&lt;/a&gt; demo -\n    &quot;Dragon Stash&quot; by Matt DesLauriers (&lt;a href=&quot;http://twitter.com/mattdesl&quot; target=&quot;_blank&quot;&gt;@mattdesl&lt;/a&gt;) -\n    1020 bytes -\n\n    &lt;div&gt;A raymarched 3D scene of a Dragon\'s egg and gold stash.\r&lt;/div&gt;\n\n    &lt;a href=&quot;../details/1664&quot; target=&quot;_top&quot;&gt;view details&lt;/a&gt; -\n    &lt;a href=&quot;../demos&quot; target=&quot;_top&quot;&gt;list of demos&lt;/a&gt;\n\n    &lt;a href=&quot;../demo/1661&quot; target=&quot;_top&quot; class=&quot;previous&quot;&gt;Previous&lt;/a&gt;\n    &lt;a href=&quot;../demo/1667&quot; target=&quot;_top&quot;  class=&quot;next&quot;&gt;Next&lt;/a&gt;\n\t&lt;/body&gt;\n&lt;/html&gt;\n'" />
+		<canvas id="c"></canvas>
+		<script>
+			var a = document.getElementsByTagName('canvas')[0];
+
+			var b = document.body;
+      var d = function(e){ return function(){ e.parentNode.removeChild(e); }; }(a);
+      // unprefix some popular vendor prefixed things (but stick to their original name)
+      var AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(f){ setInterval(f, 1000/30); };
+      // stretch canvas to screen size (once, wont onresize!)
+      a.style.width = (a.width = innerWidth) + 'px';
+      a.style.height = (a.height = innerHeight) + 'px';
+
+      var c = a.getContext('2d');
+
+		</script>
+
+ <script src="/-/live-reload.js"></script>
+    <script src="js1k-app.js"></script>
+	</body>
+</html>

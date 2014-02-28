@@ -1,70 +1,103 @@
-// console.log(a);
+with (g) {
+    //setup viewport and define S (shader) and s (size) variables...
+    viewport(
+        0,
+        S=0,
+        s=512,
+        a.style.cssText=(a.width=a.height=s));
 
-var s = 256,
-    H = ~~(Math.random()*360),
-    L = ~~(Math.random()*100)/2,
-    t = 0;
+    //not really that important, but gives a nicer background..
+    b.style.background='#000';
 
-var mouseX, mouseY;
+    //some very well compressed setup code from p01 
+    for(k in g) 
+        g[k.match(/^..|[A-Z]|1f$/g).join('')] = g[k];
+        // console.log(k, '->', k.match(/^..|[A-Z]|1f$/g).join(''))
+    
+    for (p = crP(t=2); t; coS(S), (atS(p, S) /* || console.log( getShaderInfoLog(S) )*/ )) {
+        shS(S = crS(35634 - t), --t ? <%= frag %> : 'attribute vec4 p;void main(){gl_Position=p;}');
+    }
+    //console.log( getShaderInfoLog(S) )
+    
 
-window.onmousemove = function(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    // console.log(mouseX);
+    
+
+    // veAP(
+    //     enVAA(
+    //         biB(k = 34962, crB())
+    //     ),   
+    //     2,
+    //     5126,
+    //     liP(p),
+    //     usP(p),
+    //     buD(k, new Float32Array([1,1,1, -3, -3, 1]), k+82)
+    // )
+    
+    // k=(b.onmousemove = function(e) {
+    //     g.drA(4, e&&g.un2f(g.geUL(p,"M"),e.clientX,s-e.clientY), 3)
+    // })()
+    
+
+     
+    //The rAf approach...
+    D=function() { 
+        requestAnimationFrame(D)
+        drA(4, un1f(geUL(p,"T"),t+=0.01), 3) 
+    }
+    D(
+        veAP(
+            enVAA(
+                biB(k = 34962, crB())
+            ),   
+            2,
+            5126,
+            liP(p),
+            usP(p),
+            buD(k, new Float32Array([1,1,1, -3, -3, 1]), k+82)
+        )
+    );
 }
 
-var p = [];
 
-for ()
+/*
+//de-obfuscated
+with (g) {
+    //setup viewport and define S (shader) and s (size) variables...
+    viewport(
+        0,
+        S=0,
+        s=512,
+        a.style.cssText=a.width=a.height=s);
 
-
-function R() {
-    var i = s*s,
-        x, y;
+    //some very well compressed setup code from p01 
+    for(k in g) 
+        g[k.match(/^..|[A-Z]|1f$/g).join('')] = g[k];
+        // console.log(k, '->', k.match(/^..|[A-Z]|1f$/g).join(''))
     
-    t+=0.01;
-
-    //resize our canvas back to normal
-    //This also clears the canvas
-    a.style.cssText=a.width=a.height=s;
+    //note the debugging console.log !!
+    for (p = createProgram(t=2); t; compileShader(S), (attachShader(p, S) || console.log( getShaderInfoLog(S) ) )) {
+        shaderSource(S = createShader(35634 - t), --t ? <%= frag %> : 'attribute vec4 p;void main(){gl_Position=p;}');
+    }
+    //debugging
+    console.log( getShaderInfoLog(S) )
     
-    
+    // setInterval //optional since we render on mouse
+    setTimeout((b.onmousemove=function(e) {
 
+            drawArrays(4, e&&uniform2f(getUniformLocation(p,"M"),e.clientX,s-e.clientY), 3)
+        }),
+        vertexAttribPointer(
+            enableVertexAttribArray(
+                bindBuffer(k = 34962, createBuffer())
+            ),   
+            2,
+            5126,
+            linkProgram(p),
+            useProgram(p),
+            bufferData(k, new Float32Array([1,1,1, -3, -3, 1]), k+82)
+        )
+        // ||16 // <- the timer interval, leaving it as undefined leads to 60 FPS in chrome..
+    );
 
-    requestAnimationFrame(R);
-};
-
-
-
-
-
-
-
-
-// "rgb(255,255,255)"
-// "hsl(0,0%,"+~~(c*100)+"%)"
-
-// c.fillStyle="hsl(0,0%,"+c+"%)";
-// c.fillStyle="#"+Array(4).join( (r).toString(16) );
-
-// console.log( (a = new Array(256).join(Math.random())) );
-// console.log( b.innerHTML.split('',128).map(Math.random) );
-
-R();
-requestAnimationFrame(R);
-// setInterval(R, .16);
-
-
-
-
-
-//Dot shader effect
-// while (i--) {
-//     var y = i%s,
-//         x = ~~(i/s),
-//         u = x/s;
-
-//     var n = 8*u;
-//     c.fillStyle = "hsl("+H+",50%,"+L+"%)";
-//     c.fillRect(x*4,y*4,n,n);
-// }
+    // console.log(getProgramInfoLog(p))
+}*/
