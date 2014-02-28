@@ -1,4 +1,8 @@
 
+
+// The abbreviation loop, initializing the variabled needed by the key-handlers on the side.
+
+
 // for (p in g) {
 //     g[i++] = g[p];
 //     //g[p[0]+(p[6]||'')]=g[p];
