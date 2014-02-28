@@ -47,12 +47,17 @@ var js1k = require("gulp-js1k");
 
 // Print some stats (js1k elgibility), minify and output to "/submission/"
 gulp.task("js1k", function() {
-    fs.createReadStream('./shader.glsl')
-      .pipe(tokenizer())
-      .pipe(parser())
-      .pipe(minify())           // <-- the minifier
-      .pipe(deparser(false))    // <-- "false" == no unnecessary whitespace, please.
-      .pipe(fs.createWriteStream('./submission/shader.min.glsl'))
+    // try {
+        fs.createReadStream('./shader.glsl')
+          .pipe(tokenizer())
+          .pipe(parser())
+          .pipe(minify())           // <-- the minifier
+          .pipe(deparser(false))    // <-- "false" == no unnecessary whitespace, please.
+          .pipe(fs.createWriteStream('./submission/shader.min.glsl'))
+    // } catch(e) {
+    //     console.error(e);
+    // }
+       
 
     gulp.src("js1k-app.js")
         .pipe(template({ frag: './submission/shader.min.glsl' }))

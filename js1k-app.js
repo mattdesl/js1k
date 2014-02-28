@@ -4,22 +4,47 @@ with (g) {
         0,
         S=0,
         s=512,
-        a.style.cssText=a.width=a.height=s);
+        a.style.cssText=(a.width=a.height=s));
+
+    //not really that important, but gives a nicer background..
+    b.style.background='#000';
 
     //some very well compressed setup code from p01 
     for(k in g) 
-        g[k.match(/^..|[A-Z]|2f$/g).join('')] = g[k];
+        g[k.match(/^..|[A-Z]|1f$/g).join('')] = g[k];
         // console.log(k, '->', k.match(/^..|[A-Z]|1f$/g).join(''))
     
-    for (p = crP(t=2); t; coS(S), (atS(p, S) || console.log( getShaderInfoLog(S) ) )) {
+    for (p = crP(t=2); t; coS(S), (atS(p, S) /* || console.log( getShaderInfoLog(S) )*/ )) {
         shS(S = crS(35634 - t), --t ? <%= frag %> : 'attribute vec4 p;void main(){gl_Position=p;}');
     }
-        console.log( getShaderInfoLog(S) )
+    //console.log( getShaderInfoLog(S) )
     
-    // setInterval //optional since we render on mouse
-    setTimeout((b.onmousemove=function(e) {
-            drA(4, e&&un2f(geUL(p,"M"),e.clientX,s-e.clientY), 3)
-        }),
+
+    
+
+    // veAP(
+    //     enVAA(
+    //         biB(k = 34962, crB())
+    //     ),   
+    //     2,
+    //     5126,
+    //     liP(p),
+    //     usP(p),
+    //     buD(k, new Float32Array([1,1,1, -3, -3, 1]), k+82)
+    // )
+    
+    // k=(b.onmousemove = function(e) {
+    //     g.drA(4, e&&g.un2f(g.geUL(p,"M"),e.clientX,s-e.clientY), 3)
+    // })()
+    
+
+     
+    //The rAf approach...
+    D=function() { 
+        requestAnimationFrame(D)
+        drA(4, un1f(geUL(p,"T"),t+=0.01), 3) 
+    }
+    D(
         veAP(
             enVAA(
                 biB(k = 34962, crB())
@@ -30,10 +55,7 @@ with (g) {
             usP(p),
             buD(k, new Float32Array([1,1,1, -3, -3, 1]), k+82)
         )
-        // ||16 // <- the timer interval, leaving it as undefined leads to 60 FPS in chrome..
     );
-
-    // console.log(getProgramInfoLog(p))
 }
 
 
