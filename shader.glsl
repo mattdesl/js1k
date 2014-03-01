@@ -23,26 +23,11 @@ void main( void ) {
     	float s = sin(a);
     	mat2  m = mat2(c,-s,s,c);
 		
-		//model a torus intersecting with a box...
-
-
-		vec3 q = abs(1.-mod(vec3(m*mix(pos.xz, pos.xy, sin(T/5.)),pos.y),2.));
+		//here we repeat the content, lerping from one plane to another
+		vec3 q = abs(1.-mod(vec3(m*mix(pos.xz, pos.xy, abs(sin(T/5.))),pos.y),2.));
 		
-		//original box model:
-		// dist = max(length(vec2(length(q.xz)-1.2,q.y))-.5, length(max(abs(q)-1., 0.)));
-
-		// dist = length(vec2(length(q.xz)-(sin(T)/2.+.5),q.y))-.4;
-		
+		//here is where we model the tori and intersect them with a sphere
 		dist = max(length(vec2(length(q.xz)-(sin(T)/2.+.5),q.y))-.4, length(pos)-10.5);
-
-		// dist += length(pos)-.5;
-		//a regular sphere in the centre
-		// dist = max(dist, length(pos)-.4+sin(T)/8.);	
-
-
-		//abs(1.-mod(pos,2.0));
-		//dist = max(dist, length( abs(1.-mod(pos,2.)) )-.5);
-		//dist = length(max(abs(mod(q, 2.)-.5*2.)-1., 0.0));
 
 	   	j = i;
 		if(abs(dist)<.005) 
@@ -60,5 +45,22 @@ void main( void ) {
 	if (mod( fc.x+fc.y, 6. ) > 2. )
 		color *= .9;
 
-	gl_FragColor.rgb = color;
+	gl_FragColor = vec4(vec3(color),1.);
 }
+
+
+
+
+
+		//original box model:
+		// dist = max(length(vec2(length(q.xz)-1.2,q.y))-.5, length(max(abs(q)-1., 0.)));
+
+		// dist = length(vec2(length(q.xz)-(sin(T)/2.+.5),q.y))-.4;
+		
+		// dist += length(pos)-.5;
+		//a regular sphere in the centre
+		// dist = max(dist, length(pos)-.4+sin(T)/8.);	
+
+		//abs(1.-mod(pos,2.0));
+		//dist = max(dist, length( abs(1.-mod(pos,2.)) )-.5);
+		//dist = length(max(abs(mod(q, 2.)-.5*2.)-1., 0.0));
