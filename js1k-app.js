@@ -3,7 +3,7 @@ with (g) {
     viewport(
         0,
         S=0,
-        s=512,
+        s=256,
         a.style.cssText=(a.width=a.height=s));
 
     //not really that important, but gives a nicer background..
@@ -14,7 +14,7 @@ with (g) {
         g[k.match(/^..|[A-Z]|1f$/g).join('')] = g[k];
         // console.log(k, '->', k.match(/^..|[A-Z]|1f$/g).join(''))
     
-    for (p = crP(t=2); t; coS(S), (atS(p, S) /* || console.log( getShaderInfoLog(S) )*/ )) {
+    for (p = crP(t=2); t; coS(S), (atS(p, S)  /*|| console.log( getShaderInfoLog(S) )*/ )) {
         shS(S = crS(35634 - t), --t ? <%= frag %> : 'attribute vec4 p;void main(){gl_Position=p;}');
     }
     //console.log( getShaderInfoLog(S) )

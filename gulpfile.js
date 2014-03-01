@@ -54,16 +54,20 @@ gulp.task("js1k", function() {
           .pipe(minify())           // <-- the minifier
           .pipe(deparser(false))    // <-- "false" == no unnecessary whitespace, please.
           .pipe(fs.createWriteStream('./submission/shader.min.glsl'))
+            .on('close', function() {
+                gulp.src("js1k-app.js")
+                    .pipe(template({ frag: './submission/shader.min.glsl' }))
+                    .pipe(js1k(null, 1024))
+                        .on('error', gutil.log)
+                    .pipe(gulp.dest("./submission/"))
+            })
+
     // } catch(e) {
     //     console.error(e);
     // }
        
 
-    gulp.src("js1k-app.js")
-        .pipe(template({ frag: './submission/shader.min.glsl' }))
-        .pipe(js1k(null, 1024))
-            .on('error', gutil.log)
-        .pipe(gulp.dest("./submission/"))
+    
 });
 
 

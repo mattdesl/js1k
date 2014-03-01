@@ -2,45 +2,63 @@ precision lowp float;
 
 uniform float T;
 
-
 void main( void ) {
 	vec2 fc = gl_FragCoord.xy;
-	vec2 p = fc/512.;
-	float r = length(p*2.-1.);
-	p -= .5;
-
-	float off = -sin(T/2.);
-	float theta = atan(p.y, p.x);
-	float mask = smoothstep(.7, min(.69, .69-off), r);
-	float center = smoothstep(.9, .3, r);
-	float modo = sin(sin(T)*r*25.);
-	float c = smoothstep(.5, .0, sin(T)*(sin(3.*theta+T)/2.+.5)*1.0 * center*modo);
+	vec2 p = fc / 256.;
 	
-	vec3 color = mix(vec3(.4,.1,.1), vec3(.7), mask*c);
-	vec3 inner = mix(vec3(.2), vec3(.6, .4, .3), smoothstep(1.2, .5, r));
-	color = mix(color, inner, r);
+	vec3 ray_dir = vec3(p.xy*2.-1., .9);
+
+	vec3 pos = ray_dir;
+	pos.z -= 15.5;
+// ray_dir = normalize(ray_dir);		
+	
+	vec3 color = vec3(.0);
+	float dist;
+	float j;
+	for( float i = 0.; i < 20.; i += 1. ) {		
+		float a = T/4.+.01*pos.y;
+		
+		//twist deform
+		float c = cos(a);
+    	float s = sin(a);
+    	mat2  m = mat2(c,-s,s,c);
+		
+		//model a torus intersecting with a box...
+
+
+		vec3 q = abs(1.-mod(vec3(m*mix(pos.xz, pos.xy, sin(T/5.)),pos.y),2.));
+		
+		//original box model:
+		// dist = max(length(vec2(length(q.xz)-1.2,q.y))-.5, length(max(abs(q)-1., 0.)));
+
+		// dist = length(vec2(length(q.xz)-(sin(T)/2.+.5),q.y))-.4;
+		
+		dist = max(length(vec2(length(q.xz)-(sin(T)/2.+.5),q.y))-.4, length(pos)-10.5);
+
+		// dist += length(pos)-.5;
+		//a regular sphere in the centre
+		// dist = max(dist, length(pos)-.4+sin(T)/8.);	
+
+
+		//abs(1.-mod(pos,2.0));
+		//dist = max(dist, length( abs(1.-mod(pos,2.)) )-.5);
+		//dist = length(max(abs(mod(q, 2.)-.5*2.)-1., 0.0));
+
+	   	j = i;
+		if(abs(dist)<.005) 
+			break;		
+		pos += ray_dir * dist;
+	}
+	
+	//determine our color, with vignette
+	color = vec3(j/40.) * (1.-length(p-.5)) * 1.4;
 
 	//some noise
-	color += fract(sin(dot(p, vec2(12.9,78.2))) * 43758.5)*.05;
+	color += fract(sin(dot(p, vec2(12.9,78.2))) * 43758.5)*.15;
 	
 	//scanlines
-	if (mod( fc.x+fc.y, 6.0 ) > 2. )
-		color *= 0.9;
+	if (mod( fc.x+fc.y, 6. ) > 2. )
+		color *= .9;
 
-	gl_FragColor = vec4(color, 1.);
+	gl_FragColor.rgb = color;
 }
-
-
-// void main( void ) {
-	
-// 	float R = .45;
-// 	vec2 P = gl_FragCoord.xy/512. - .5;
-	// vec3 N = normalize( vec3(P.xy, sqrt(R*R - P.x*P.x - P.y*P.y)) );
-	// vec3 L = normalize( vec3(M.xy/512.-.5, .5) );
-	// float D = max(0., dot(N,L));
-
-// 	vec3 C = mix(vec3(.8,.6,.5), vec3(0.2), .3*vec3(hash(M.y+gl_FragCoord.xy*.01))) * D;
-
-// 	 // vec3 C = mix(vec3(D), vec3(0.8, 0.6, 0.5), hash(gl_FragCoord.xy));
-// 	gl_FragColor = vec4(C,1.0);
-// }   
