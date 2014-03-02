@@ -16,19 +16,15 @@ with (g) {
 
 
     //uncomment for debugging shader errors
-    for (p = crP(t=2); t; coS(S), (atS(p, S)  || console.log( "GL Error:", getError(), "\nShader Log:", getShaderInfoLog(S) ) )) {
-        shS(S = crS(35634 - t), --t ? "precision mediump float;uniform float T;void main(void){vec2 a=gl_FragCoord.xy;vec2 b=a/256.;vec3 c=vec3(b.xy*2.-1.,.9);vec3 d=c;d.z-=15.5;vec3 e=vec3(.0);float f;float g;for(float h=0.;h<20.;h+=1.){float i=T/4.+.01*d.y;float j=cos(i);float k=sin(i);mat2 l=mat2(j,-k,k,j);vec3 m=abs(1.-mod(vec3(l*mix(d.xz,d.xy,abs(sin(T/5.))),d.y),2.));f=max(length(vec2(length(m.xz)-(sin(T)/2.+.5),m.y))-.4,length(d)-10.5);g=h;if(abs(f)<.005) break;d+=c*f;}e=vec3(g/40.)*(1.-length(b-.5))*1.4;e+=fract(sin(dot(b,vec2(12.9,78.2)))*43758.5)*.15;if(mod(a.x+a.y,6.)>2.) e*=.9;gl_FragColor=vec4(vec3(e),1.);}" : 'attribute vec4 p;void main(){gl_Position=p;}');
+    for (p = crP(t=2); t; coS(S), (atS(p, S)  /*|| console.log( getShaderInfoLog(S) )*/ )) {
+        shS(S = crS(35634 - t), --t ? "precision lowp float;uniform float T;void main(void){vec2 a=gl_FragCoord.xy;vec2 b=a/256.;vec3 c=vec3(b.xy*2.-1.,.9);vec3 d=c;d.z-=15.5;vec3 e=vec3(.0);float f;float g;float h=T;for(float i=0.;i<20.;i+=1.){float j=h/4.+.01*d.y;float k=cos(j);float l=sin(j);mat2 m=mat2(k,-l,l,k);vec3 n=abs(1.-mod(vec3(m*mix(d.xz,d.xy,abs(sin(h/5.))),d.y),2.));f=max(length(vec2(length(n.xz)-(sin(h)/2.+.5),n.y))-.4,length(d)-10.5);g=i;if(abs(f)<.005) break;d+=c*f;}e=vec3(g/40.)*(1.-length(b-.5))*1.4;e+=fract(sin(dot(b,vec2(12.9,78.2)))*43758.5)*.15;if(mod(a.x+a.y,6.)>2.) e*=.9;gl_FragColor=vec4(vec3(e),1.);}" : 'attribute vec4 p;void main(){gl_Position=p;}');
     }
-    console.log( getShaderInfoLog(S) )
-    console.log( "GL Error:", getError() );
+    //console.log( getShaderInfoLog(S) )
 
     //setInterval leads to pretty brutal performance in Chrome
     D=function() { 
         requestAnimationFrame(D)
         drA(4, un1f(geUL(p,"T"),t+=.01), 3) 
-        var e = getError();
-        if (e)
-            console.warn("GL Error:", e);
     }
     D(
         veAP(
@@ -42,9 +38,6 @@ with (g) {
             buD(k, new Float32Array([1,1,1, -3, -3, 1]), k+82)
         )
     );
-    var e = getError();
-    if (e)
-        console.warn("GL Error:", e);
 }
 
 
@@ -65,7 +58,7 @@ with (g) {
     
     //note the debugging console.log !!
     for (p = createProgram(t=2); t; compileShader(S), (attachShader(p, S) || console.log( getShaderInfoLog(S) ) )) {
-        shaderSource(S = createShader(35634 - t), --t ? "precision lowp float;uniform float T;void main(void){vec2 a=gl_FragCoord.xy;vec2 b=a/256.;vec3 c=vec3(b.xy*2.-1.,.9);vec3 d=c;d.z-=15.5;vec3 e=vec3(.0);float f;float g;for(float h=0.;h<20.;h+=1.){float i=T/4.+.01*d.y;float j=cos(i);float k=sin(i);mat2 l=mat2(j,-k,k,j);vec3 m=abs(1.-mod(vec3(l*mix(d.xz,d.xy,abs(sin(T/5.))),d.y),2.));f=max(length(vec2(length(m.xz)-(sin(T)/2.+.5),m.y))-.4,length(d)-10.5);g=h;if(abs(f)<.005) break;d+=c*f;}e=vec3(g/40.)*(1.-length(b-.5))*1.4;e+=fract(sin(dot(b,vec2(12.9,78.2)))*43758.5)*.15;if(mod(a.x+a.y,6.)>2.) e*=.9;gl_FragColor=vec4(vec3(e),1.);}" : 'attribute vec4 p;void main(){gl_Position=p;}');
+        shaderSource(S = createShader(35634 - t), --t ? "precision lowp float;uniform float T;void main(void){vec2 a=gl_FragCoord.xy;vec2 b=a/256.;vec3 c=vec3(b.xy*2.-1.,.9);vec3 d=c;d.z-=15.5;vec3 e=vec3(.0);float f;float g;float h=T;for(float i=0.;i<20.;i+=1.){float j=h/4.+.01*d.y;float k=cos(j);float l=sin(j);mat2 m=mat2(k,-l,l,k);vec3 n=abs(1.-mod(vec3(m*mix(d.xz,d.xy,abs(sin(h/5.))),d.y),2.));f=max(length(vec2(length(n.xz)-(sin(h)/2.+.5),n.y))-.4,length(d)-10.5);g=i;if(abs(f)<.005) break;d+=c*f;}e=vec3(g/40.)*(1.-length(b-.5))*1.4;e+=fract(sin(dot(b,vec2(12.9,78.2)))*43758.5)*.15;if(mod(a.x+a.y,6.)>2.) e*=.9;gl_FragColor=vec4(vec3(e),1.);}" : 'attribute vec4 p;void main(){gl_Position=p;}');
     }
     //debugging
     console.log( getShaderInfoLog(S) )

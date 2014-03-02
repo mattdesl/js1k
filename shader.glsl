@@ -15,8 +15,9 @@ void main( void ) {
 	vec3 color = vec3(.0);
 	float dist;
 	float j;
+	float time = T;
 	for( float i = 0.; i < 20.; i += 1. ) {		
-		float a = T/4.+.01*pos.y;
+		float a = time/4.+.01*pos.y;
 		
 		//twist deform
 		float c = cos(a);
@@ -24,10 +25,10 @@ void main( void ) {
     	mat2  m = mat2(c,-s,s,c);
 		
 		//here we repeat the content, lerping from one plane to another
-		vec3 q = abs(1.-mod(vec3(m*mix(pos.xz, pos.xy, abs(sin(T/5.))),pos.y),2.));
+		vec3 q = abs(1.-mod(vec3(m*mix(pos.xz, pos.xy, abs(sin(time/5.))),pos.y),2.));
 		
 		//here is where we model the tori and intersect them with a sphere
-		dist = max(length(vec2(length(q.xz)-(sin(T)/2.+.5),q.y))-.4, length(pos)-10.5);
+		dist = max(length(vec2(length(q.xz)-(sin(time)/2.+.5),q.y))-.4, length(pos)-10.5);
 
 	   	j = i;
 		if(abs(dist)<.005) 
