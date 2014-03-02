@@ -57,8 +57,8 @@ gulp.task("js1k", function() {
             .on('close', function() {
                 gulp.src("js1k-app.js")
                     .pipe(template({ frag: './submission/shader.min.glsl' }))
-                    .pipe(js1k(null, 1024))
-                        .on('error', gutil.log)
+                    // .pipe(js1k(null, 1024))
+                    //     .on('error', gutil.log)
                     .pipe(gulp.dest("./submission/"))
             })
 
