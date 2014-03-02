@@ -78,7 +78,7 @@ with (g) {
     //setInterval leads to pretty brutal performance in Chrome
     D=function() { 
         requestAnimationFrame(D)
-        g.drawArrays(4, g.uniform1f(g.getUniformLocation(p,"T"),t+=.01), 3)
+        g.drawArrays(4, g.uniform1f(g.getUniformLocation(p,"T"),t+=.01), 3) 
         var e = getError();
         if (e)
             console.warn("GL Error:", e);
